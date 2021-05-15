@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss">
 #audioepic {
-  // height: 100%;
-  border: 1px red dashed;
+  height: 100%;
+  border: 1px red solid;
 }
 </style>
