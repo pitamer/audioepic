@@ -1,17 +1,28 @@
 <template>
     <div id="loop-section" class="section">
-        <div class="loop button">o</div>
-        <div class="loop button">o</div>
-        <div class="loop button">o</div>
-        <div class="loop button">o</div>
-        <div class="loop button">o</div>
-        <div class="loop button">o</div>
+        <LoopButton
+            v-for="loop in loops"
+            :key="loops.indexOf(loop)"
+            :icon="loop.icon"
+            :name="loop.name"
+        />
     </div>
 </template>
 
 <script>
+import LoopButton from "./LoopButton";
+import { initialLoops } from "@/store/constants";
+
 export default {
   name: "LoopSection",
+  components: {
+    LoopButton
+  },
+  data() {
+    return {
+      loops: initialLoops
+    }
+  }
 };
 </script>
 

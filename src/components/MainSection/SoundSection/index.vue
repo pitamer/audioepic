@@ -1,30 +1,34 @@
 <template>
     <div id="sound-section" class="section">
-        <div class="sound button">1</div>
-        <div class="sound button">2</div>
-        <div class="sound button">3</div>
-        <div class="sound button">4</div>
-        <div class="sound button">5</div>
-        <div class="sound button">6</div>
-        <div class="sound button">7</div>
-        <div class="sound button">8</div>
-        <div class="sound button">9</div>
-        <div class="sound button">0</div>
+        <SoundButton
+            v-for="sound in sounds"
+            :key="sounds.indexOf(sound)"
+            :number="sound.number"
+            :icon="sound.icon"
+            :name="sound.name"
+        />
     </div>
 </template>
 
 <script>
+import SoundButton from './soundButton';
+import { initialSounds } from '@/store/constants';
+
 export default {
   name: "SoundSection",
+  components: {
+      SoundButton
+  },
+  data() {
+      return {
+          sounds: initialSounds
+      }
+  }
 };
 </script>
 
 <style lang="scss">
 #sound-section {
     display: flex;
-    .sound {
-        margin: 0 5px;
-        width: 100%;
-    }
 }
 </style>

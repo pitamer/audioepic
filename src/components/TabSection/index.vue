@@ -2,7 +2,7 @@
     <div id="tabs-section" class="section">
       <div id="tabs">
         <div
-          class="tab button"
+          class="tab button centered"
           v-for="tab in tabs"
           :key="tabs.indexOf(tab)"
         >
@@ -11,7 +11,7 @@
       </div>
       <div
         id="add-tab-button"
-        class="button"
+        class="button centered"
         @click="addTab('New Tab')"
       >
         +
