@@ -1,15 +1,19 @@
 <template>
-    <div id="tabs-section">
+    <div id="tabs-section" class="section">
       <div id="tabs">
         <div
-          class="tab"
+          class="tab button"
           v-for="tab in tabs"
           :key="tabs.indexOf(tab)"
         >
           {{ tab.name }}
         </div>
       </div>
-      <div id="add-tab-button" @click="addTab('New Tab')">
+      <div
+        id="add-tab-button"
+        class="button"
+        @click="addTab('New Tab')"
+      >
         +
       </div>
     </div>
@@ -38,17 +42,18 @@ export default {
 
 <style lang="scss">
 #tabs-section {
+  display: flex;
+  #tabs {
     display: flex;
-    * {
-      margin: 5px;
+    flex-grow: 1;
+    .tab {
+      margin: 0 5px;
+      width: 100%;
     }
-    #tabs {
-        display: flex;
-        flex-grow: 1;
-        .tab {
-            width: 100%;
-            outline: 1px black solid;
-        }
-    }
+  }
+  #add-tab-button {
+    margin: 0 5px;
+    width: 28px;
+  }
 }
 </style>

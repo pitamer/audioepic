@@ -22,9 +22,10 @@ export default {
 </script>
 
 <style lang="scss">
-#main-section {
-    * {
-      margin: 10px 5px; // #
-    }
-}
+// #
+// #main-section {
+//     * {
+//       margin: 10px 5px; // #
+//     }
+// }
 </style>

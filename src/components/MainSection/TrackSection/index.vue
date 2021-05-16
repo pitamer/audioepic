@@ -1,8 +1,8 @@
 <template>
-    <div id="track-section">
-        <div class="track">#</div>
-        <div class="track">#</div>
-        <div class="track">#</div>
+    <div id="track-section" class="section">
+        <div class="track button">#</div>
+        <div class="track button">#</div>
+        <div class="track button">#</div>
     </div>
 </template>
 
@@ -17,8 +17,7 @@ export default {
     display: flex;
     flex-flow: column;
     .track {
-        width: 100%;
-        outline: 1px black solid;
+        margin: 10px 5px;
     }
 }
 </style>

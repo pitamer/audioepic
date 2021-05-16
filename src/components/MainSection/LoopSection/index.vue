@@ -1,11 +1,11 @@
 <template>
-    <div id="loop-section">
-        <div class="loop">o</div>
-        <div class="loop">o</div>
-        <div class="loop">o</div>
-        <div class="loop">o</div>
-        <div class="loop">o</div>
-        <div class="loop">o</div>
+    <div id="loop-section" class="section">
+        <div class="loop button">o</div>
+        <div class="loop button">o</div>
+        <div class="loop button">o</div>
+        <div class="loop button">o</div>
+        <div class="loop button">o</div>
+        <div class="loop button">o</div>
     </div>
 </template>
 
@@ -19,8 +19,8 @@ export default {
 #loop-section {
     display: flex;
     .loop {
+        margin: 0 5px;
         width: 100%;
-        outline: 1px black solid;
     }
 }
 </style>
