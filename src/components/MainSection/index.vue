@@ -1,31 +1,35 @@
 <template>
-    <div id="main-section">
-      <SoundSection />
-      <LoopSection />
-      <TrackSection />
-    </div>
+  <div id="main-section">
+    <h3>Sounds</h3>
+    <hr />
+    <SoundSection />
+    <h3>Loops</h3>
+    <hr />
+    <LoopSection />
+    <h3>Tracks</h3>
+    <hr />
+    <TrackSection />
+  </div>
 </template>
 
 <script>
-import SoundSection from '@/components/MainSection/SoundSection';
-import LoopSection from '@/components/MainSection/LoopSection';
-import TrackSection from '@/components/MainSection/TrackSection';
+import SoundSection from "@/components/MainSection/SoundSection";
+import LoopSection from "@/components/MainSection/LoopSection";
+import TrackSection from "@/components/MainSection/TrackSection";
 
 export default {
   name: "MainSection",
   components: {
     SoundSection,
     LoopSection,
-    TrackSection
-  }
+    TrackSection,
+  },
 };
 </script>
 
 <style lang="scss">
-// #
-// #main-section {
-//     * {
-//       margin: 10px 5px; // #
-//     }
-// }
+h3 {
+  margin: 0;
+  padding: 0;
+}
 </style>

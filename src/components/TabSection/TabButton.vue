@@ -1,11 +1,15 @@
 <template>
-  <div class="tab button centered">
+  <div
+    :class="['tab button centered', {isActive: this.$store.state.currentTabIndex === this.index}]"
+    @click="setCurrentTabIndex(index)"
+>
     <div class="tab-name centered">{{ name }}</div>
     <div
-        class="delete-tab-button button centered"
-        @click.prevent.stop=""
+      class="delete-tab-button button centered"
+      @click.stop="deleteTab(index)"
+      v-if="$store.state.tabs.length > 1"
     >
-        X
+      X
     </div>
   </div>
 </template>
@@ -19,6 +23,31 @@ export default {
       type: String,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
+
+  data() {
+    return {
+      isActive: this.$store.state.currentTabIndex === this.index,
+    };
+  },
+
+  methods: {
+    deleteTab(deletedTabIndex) {
+      this.$store.commit({
+        type: "deleteTab",
+        deletedTabIndex: deletedTabIndex,
+      });
+    },
+    setCurrentTabIndex(newCurrentTabIndex) {
+      this.$store.commit({
+        type: "setCurrentTabIndex",
+        newCurrentTabIndex: newCurrentTabIndex,
+      });
+    },
   },
 };
 </script>
@@ -28,6 +57,10 @@ export default {
   margin: 0 5px;
   width: 100%;
   display: flex;
+
+  &.isActive {
+      background-color: lightblue;
+  }
 
   .tab-name {
     flex-grow: 1;

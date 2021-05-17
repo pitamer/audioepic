@@ -27,7 +27,7 @@ body {
   padding: none;
   margin: none;
   min-height: 100vh;
-  box-shadow: inset 0px 0px 0px 5px skyblue; // #
+  box-shadow: inset 0 0 0 5px skyblue;
 }
 
 #nav {
@@ -38,7 +38,7 @@ body {
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: skyblue; // #
+      color: skyblue;
     }
   }
 }

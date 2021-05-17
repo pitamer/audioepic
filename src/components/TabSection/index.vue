@@ -2,8 +2,9 @@
     <div id="tabs-section" class="section">
       <div id="tabs">
         <TabButton
-          v-for="tab in tabs"
-          :key="tabs.indexOf(tab)"
+          v-for="tab, tabIndex in tabs"
+          :key="tabIndex"
+          :index="tabIndex"
           :name="tab.name"
         />
       </div>
@@ -11,6 +12,7 @@
         id="add-tab-button"
         class="button centered"
         @click="addTab('New Tab')"
+        v-if="$store.state.tabs.length < 7"
       >
         +
       </div>
