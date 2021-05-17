@@ -46,7 +46,7 @@ export default {
     cursor: pointer;
     overflow: hidden;
     &:hover {
-      box-shadow: 0px 0px 0px 50px #eee inset;
+      box-shadow: 0 0 0 50px #cccccc80 inset;
       border: 2px #999 solid;
     }
   }

@@ -1,13 +1,11 @@
 <template>
     <div id="tabs-section" class="section">
       <div id="tabs">
-        <div
-          class="tab button centered"
+        <TabButton
           v-for="tab in tabs"
           :key="tabs.indexOf(tab)"
-        >
-          {{ tab.name }}
-        </div>
+          :name="tab.name"
+        />
       </div>
       <div
         id="add-tab-button"
@@ -20,8 +18,14 @@
 </template>
 
 <script>
+import TabButton from './TabButton';
+
 export default {
   name: "TabsSection",
+
+  components: {
+    TabButton
+  },
 
   data() {
     return {
@@ -46,10 +50,6 @@ export default {
   #tabs {
     display: flex;
     flex-grow: 1;
-    .tab {
-      margin: 0 5px;
-      width: 100%;
-    }
   }
   #add-tab-button {
     margin: 0 5px;

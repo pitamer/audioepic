@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-.sound {
+#sound-section .sound {
   display: flex;
   flex-flow: column;
   margin: 0 5px;

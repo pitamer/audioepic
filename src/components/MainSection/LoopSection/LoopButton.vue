@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
-.loop {
+#loop-section .loop {
   display: flex;
   flex-flow: column;
   margin: 0 5px;
