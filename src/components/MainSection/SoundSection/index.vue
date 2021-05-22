@@ -5,6 +5,7 @@
         $store.state.currentBoardIndex
       ].sounds"
       :key="soundIndex"
+      :index="soundIndex"
       :number="sound.number"
       :icon="sound.icon"
       :name="sound.name"

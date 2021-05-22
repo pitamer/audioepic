@@ -1,5 +1,5 @@
 <template>
-  <div class="sound button">
+  <div class="sound button" @click="playSound">
     <div class="sound-number">{{ number }}</div>
     <div class="sound-icon">{{ icon }}</div>
     <div class="sound-name">{{ name }}</div>
@@ -10,19 +10,33 @@
 export default {
   name: "SoundButton",
   props: {
-      number: {
-          type: Number,
-          required: true
-      },
-      icon: {
-          type: String,
-          required: true
-      },
-      name: {
-          type: String,
-          required: true
-      }
-  }
+    number: {
+      type: Number,
+      required: true,
+    },
+    icon: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
+
+  methods: {
+    playSound() {
+      this.$store.commit({
+        type: "playSound",
+        boardIndex: this.$store.state.currentBoardIndex,
+        soundIndex: this.index,
+      });
+    },
+  },
 };
 </script>
 
@@ -34,8 +48,9 @@ export default {
   width: 100%;
   min-height: 50px;
 
-  .sound-number, .sound-name {
-      font-size: 0.7em
+  .sound-number,
+  .sound-name {
+    font-size: 0.7em;
   }
 
   .sound-number {

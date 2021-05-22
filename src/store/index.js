@@ -44,12 +44,25 @@ export default createStore({
       state, payload;
     },
 
+    playSound(state, payload) {
+      const { boardIndex, soundIndex } = payload;
+
+      const board = state.boards[boardIndex];
+      const sound = board.sounds[soundIndex];
+
+      sound.audio.play();
+    },
+
     toggleLoop(state, payload) {
       const { boardIndex, loopIndex } = payload;
 
       const board = state.boards[boardIndex];
       const loop = board.loops[loopIndex];
+
       loop.isActive = !loop.isActive;
+      loop.audio.loop = true;
+
+      loop.isActive ? loop.audio.play() : loop.audio.pause();
     },
 
     deactivateBoards(state) {
