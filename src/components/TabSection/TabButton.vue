@@ -1,13 +1,16 @@
 <template>
   <div
-    :class="['tab button centered', {isActive: this.$store.state.currentTabIndex === this.index}]"
-    @click="setCurrentTabIndex(index)"
->
+    :class="[
+      'tab button centered',
+      { isActive: this.$store.state.currentBoardIndex === this.index },
+    ]"
+    @click="setcurrentBoardIndex(index)"
+  >
     <div class="tab-name centered">{{ name }}</div>
     <div
       class="delete-tab-button button centered"
-      @click.stop="deleteTab(index)"
-      v-if="$store.state.tabs.length > 1"
+      @click.stop="deleteBoard(index)"
+      v-if="$store.state.boards.length > 1"
     >
       X
     </div>
@@ -31,21 +34,21 @@ export default {
 
   data() {
     return {
-      isActive: this.$store.state.currentTabIndex === this.index,
+      isActive: this.$store.state.currentBoardIndex === this.index,
     };
   },
 
   methods: {
-    deleteTab(deletedTabIndex) {
+    deleteBoard(deletedBoardIndex) {
       this.$store.commit({
-        type: "deleteTab",
-        deletedTabIndex: deletedTabIndex,
+        type: "deleteBoard",
+        deletedBoardIndex: deletedBoardIndex,
       });
     },
-    setCurrentTabIndex(newCurrentTabIndex) {
+    setcurrentBoardIndex(newcurrentBoardIndex) {
       this.$store.commit({
-        type: "setCurrentTabIndex",
-        newCurrentTabIndex: newCurrentTabIndex,
+        type: "setcurrentBoardIndex",
+        newcurrentBoardIndex: newcurrentBoardIndex,
       });
     },
   },
@@ -59,7 +62,7 @@ export default {
   display: flex;
 
   &.isActive {
-      background-color: lightblue;
+    background-color: lightblue;
   }
 
   .tab-name {

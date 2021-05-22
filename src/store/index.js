@@ -1,42 +1,46 @@
 import { createStore } from "vuex";
-import { initialTabs } from "./constants";
+import { initialBoards, emptyBoard } from "./constants";
 
 export default createStore({
   state: {
-    tabs: initialTabs,
-    currentTabIndex: 0,
+    boards: initialBoards,
+    currentBoardIndex: 0,
+    editMode: false,
   },
 
   mutations: {
-    setCurrentTabIndex(state, payload) {
-      state.currentTabIndex = payload.newCurrentTabIndex;
+    setcurrentBoardIndex(state, payload) {
+      state.currentBoardIndex = payload.newcurrentBoardIndex;
     },
 
-    addTab(state, payload) {
-      const { newTabName } = payload;
-      state.tabs.push({ name: newTabName });
+    addBoard(state, payload) {
+      const { newBoardName } = payload;
+      state.boards.push({
+        ...emptyBoard,
+        name: newBoardName,
+      });
     },
 
-    deleteTab(state, payload) {
-      const { deletedTabIndex } = payload;
+    deleteBoard(state, payload) {
+      const { deletedBoardIndex } = payload;
 
-      if (state.currentTabIndex === deletedTabIndex) {
-        state.currentTabIndex = state.tabs[deletedTabIndex + 1]
-          ? deletedTabIndex
-          : deletedTabIndex > 0
-          ? deletedTabIndex - 1
+      if (state.currentBoardIndex === deletedBoardIndex) {
+        state.currentBoardIndex = state.boards[deletedBoardIndex + 1]
+          ? deletedBoardIndex
+          : deletedBoardIndex > 0
+          ? deletedBoardIndex - 1
           : null;
-      } else if (state.currentTabIndex > deletedTabIndex) {
-        state.currentTabIndex--;
+      } else if (state.currentBoardIndex > deletedBoardIndex) {
+        state.currentBoardIndex--;
       }
-      state.tabs.splice(deletedTabIndex, 1);
+      state.boards.splice(deletedBoardIndex, 1);
     },
 
-    renameTab(state, payload) {
+    renameBoard(state, payload) {
       state, payload;
     },
 
-    reorderTab(state, payload) {
+    reorderBoard(state, payload) {
       state, payload;
     },
   },

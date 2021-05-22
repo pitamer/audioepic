@@ -1,48 +1,48 @@
 <template>
-    <div id="tabs-section" class="section">
-      <div id="tabs">
-        <TabButton
-          v-for="tab, tabIndex in tabs"
-          :key="tabIndex"
-          :index="tabIndex"
-          :name="tab.name"
-        />
-      </div>
-      <div
-        id="add-tab-button"
-        class="button centered"
-        @click="addTab('New Tab')"
-        v-if="$store.state.tabs.length < 7"
-      >
-        +
-      </div>
+  <div id="tabs-section" class="section">
+    <div id="tabs">
+      <TabButton
+        v-for="board, boardIndex in boards"
+        :key="boardIndex"
+        :index="boardIndex"
+        :name="board.name"
+      />
     </div>
+    <div
+      id="add-board-button"
+      class="button centered"
+      @click="addBoard('New Board')"
+      v-if="$store.state.boards.length < 7"
+    >
+      +
+    </div>
+  </div>
 </template>
 
 <script>
-import TabButton from './TabButton';
+import TabButton from "./TabButton";
 
 export default {
   name: "TabsSection",
 
   components: {
-    TabButton
+    TabButton,
   },
 
   data() {
     return {
-      tabs: this.$store.state.tabs,
-    }
+      boards: this.$store.state.boards,
+    };
   },
 
   methods: {
-    addTab(newTabName) {
+    addBoard(newBoardName) {
       this.$store.commit({
-        type: 'addTab',
-        newTabName: newTabName,
-      })
+        type: "addBoard",
+        newBoardName: newBoardName,
+      });
     },
-  }
+  },
 };
 </script>
 
@@ -53,7 +53,7 @@ export default {
     display: flex;
     flex-grow: 1;
   }
-  #add-tab-button {
+  #add-board-button {
     margin: 0 5px;
     width: 28px;
   }
