@@ -9,7 +9,7 @@ export default createStore({
   },
 
   mutations: {
-    setcurrentBoardIndex(state, payload) {
+    setCurrentBoardIndex(state, payload) {
       state.currentBoardIndex = payload.newcurrentBoardIndex;
     },
 
@@ -43,9 +43,33 @@ export default createStore({
     reorderBoard(state, payload) {
       state, payload;
     },
+
+    toggleLoop(state, payload) {
+      const { boardIndex, loopIndex } = payload;
+
+      const board = state.boards[boardIndex];
+      const loop = board.loops[loopIndex];
+      loop.isActive = !loop.isActive;
+    },
+
+    deactivateBoards(state) {
+      state.boards.forEach((board) => {
+        board.sounds.forEach((sound) => (sound.isActive = false));
+        board.loops.forEach((loop) => (loop.isActive = false));
+        // board.tracks.forEach((track) => (track.isActive = false)); // #
+      });
+    },
   },
 
-  actions: {},
+  actions: {
+    switchBoard: ({ commit }, payload) => {
+      commit({
+        type: "setCurrentBoardIndex",
+        newcurrentBoardIndex: payload.newcurrentBoardIndex,
+      });
+      commit("deactivateBoards");
+    },
+  },
 
   modules: {},
 });

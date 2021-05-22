@@ -6,103 +6,103 @@ export const initialBoards = [
         number: 1,
         icon: "☠",
         name: "Screech",
-        isActive: false
+        isActive: false,
       },
       {
         number: 2,
         icon: "❦",
         name: "Summoning",
-        isActive: false
+        isActive: false,
       },
       {
         number: 3,
         icon: "❀",
         name: "Drums",
-        isActive: false
+        isActive: false,
       },
       {
         number: 4,
         icon: "✯",
         name: "Magic",
-        isActive: false
+        isActive: false,
       },
       {
         number: 5,
         icon: "☢",
         name: "Clank",
-        isActive: false
+        isActive: false,
       },
       {
         number: 6,
         icon: "۩",
         name: "Bash",
-        isActive: false
+        isActive: false,
       },
       {
         number: 7,
         icon: "๑",
         name: "Water",
-        isActive: false
+        isActive: false,
       },
       {
         number: 8,
         icon: "➹",
         name: "Arrow",
-        isActive: false
+        isActive: false,
       },
       {
         number: 9,
         icon: "☾",
         name: "Howl",
-        isActive: false
+        isActive: false,
       },
       {
         number: 0,
         icon: "♕",
         name: "Wind",
-        isActive: false
+        isActive: false,
       },
     ],
     loops: [
       {
         icon: "❉",
         name: "Steps",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "☼",
         name: "Daylight",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♧",
         name: "Birds",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "☁",
         name: "Rain",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♆",
         name: "Thunder",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♨",
         name: "Bonfire",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♨",
         name: "Bonfire",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♨",
         name: "Bonfire",
-        isActive: false
+        isActive: false,
       },
     ],
   },
@@ -113,25 +113,25 @@ export const initialBoards = [
         number: 1,
         icon: "☠",
         name: "Screech",
-        isActive: false
+        isActive: false,
       },
       {
         number: 0,
         icon: "♕",
         name: "Wind",
-        isActive: false
+        isActive: false,
       },
     ],
     loops: [
       {
         icon: "♆",
         name: "Thunder",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♨",
         name: "Bonfire",
-        isActive: false
+        isActive: false,
       },
     ],
   },
@@ -142,93 +142,93 @@ export const initialBoards = [
         number: 1,
         icon: "☠",
         name: "Screech",
-        isActive: false
+        isActive: false,
       },
       {
         number: 2,
         icon: "❦",
         name: "Summoning",
-        isActive: false
+        isActive: false,
       },
       {
         number: 3,
         icon: "❀",
         name: "Drums",
-        isActive: false
+        isActive: false,
       },
       {
         number: 4,
         icon: "✯",
         name: "Magic",
-        isActive: false
+        isActive: false,
       },
       {
         number: 5,
         icon: "☢",
         name: "Clank",
-        isActive: false
+        isActive: false,
       },
       {
         number: 6,
         icon: "۩",
         name: "Bash",
-        isActive: false
+        isActive: false,
       },
       {
         number: 7,
         icon: "๑",
         name: "Water",
-        isActive: false
+        isActive: false,
       },
       {
         number: 8,
         icon: "➹",
         name: "Arrow",
-        isActive: false
+        isActive: false,
       },
       {
         number: 9,
         icon: "☾",
         name: "Howl",
-        isActive: false
+        isActive: false,
       },
       {
         number: 0,
         icon: "♕",
         name: "Wind",
-        isActive: false
+        isActive: false,
       },
     ],
     loops: [
       {
         icon: "❉",
         name: "Steps",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "☼",
         name: "Daylight",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♧",
         name: "Birds",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "☁",
         name: "Rain",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♆",
         name: "Thunder",
-        isActive: false
+        isActive: false,
       },
       {
         icon: "♨",
         name: "Bonfire",
-        isActive: false
+        isActive: false,
       },
     ],
   },
@@ -238,5 +238,5 @@ export const emptyBoard = {
   name: "New Board",
   sounds: [],
   loops: [],
-  tracks: []
+  tracks: [],
 };

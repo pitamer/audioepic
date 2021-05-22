@@ -2,7 +2,7 @@
   <div id="tabs-section" class="section">
     <div id="tabs">
       <TabButton
-        v-for="board, boardIndex in boards"
+        v-for="(board, boardIndex) in $store.state.boards"
         :key="boardIndex"
         :index="boardIndex"
         :name="board.name"
@@ -27,12 +27,6 @@ export default {
 
   components: {
     TabButton,
-  },
-
-  data() {
-    return {
-      boards: this.$store.state.boards,
-    };
   },
 
   methods: {

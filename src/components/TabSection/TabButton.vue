@@ -2,9 +2,9 @@
   <div
     :class="[
       'tab button centered',
-      { isActive: this.$store.state.currentBoardIndex === this.index },
+      { active: index === $store.state.currentBoardIndex },
     ]"
-    @click="setcurrentBoardIndex(index)"
+    @click="switchBoard(index)"
   >
     <div class="tab-name centered">{{ name }}</div>
     <div
@@ -32,12 +32,6 @@ export default {
     },
   },
 
-  data() {
-    return {
-      isActive: this.$store.state.currentBoardIndex === this.index,
-    };
-  },
-
   methods: {
     deleteBoard(deletedBoardIndex) {
       this.$store.commit({
@@ -45,9 +39,12 @@ export default {
         deletedBoardIndex: deletedBoardIndex,
       });
     },
-    setcurrentBoardIndex(newcurrentBoardIndex) {
-      this.$store.commit({
-        type: "setcurrentBoardIndex",
+    switchBoard(newcurrentBoardIndex) {
+      if (this.index === this.$store.state.currentBoardIndex) {
+        return;
+      }
+      this.$store.dispatch({
+        type: "switchBoard",
         newcurrentBoardIndex: newcurrentBoardIndex,
       });
     },
@@ -61,7 +58,7 @@ export default {
   width: 100%;
   display: flex;
 
-  &.isActive {
+  &.active {
     background-color: lightblue;
   }
 
