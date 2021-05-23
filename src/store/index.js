@@ -65,6 +65,17 @@ export default createStore({
       loop.isActive ? loop.audio.play() : loop.audio.pause();
     },
 
+    toggleTrack(state, payload) {
+      const { boardIndex, trackIndex } = payload;
+
+      const board = state.boards[boardIndex];
+      const track = board.tracks[trackIndex];
+
+      track.isActive = !track.isActive;
+
+      track.isActive ? track.audio.play() : track.audio.pause();
+    },
+
     deactivateBoards(state) {
       state.boards.forEach((board) => {
         board.sounds.forEach((sound) => (sound.isActive = false));

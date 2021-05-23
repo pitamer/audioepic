@@ -1,14 +1,26 @@
 <template>
   <div id="track-section" class="section">
-    <div class="track button centered">►</div>
-    <div class="track button centered">►</div>
-    <div class="track button centered">►</div>
+    <TrackButton
+      v-for="(track, trackIndex) in $store.state.boards[
+        $store.state.currentBoardIndex
+      ].tracks"
+      :key="trackIndex"
+      :index="trackIndex"
+      :icon="track.icon"
+      :name="track.name"
+      :isActive="track.isActive"
+    />
   </div>
 </template>
 
 <script>
+import TrackButton from "./TrackButton";
+
 export default {
   name: "TrackSection",
+  components: {
+    TrackButton,
+  },
 };
 </script>
 

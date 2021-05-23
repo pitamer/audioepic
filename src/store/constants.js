@@ -138,6 +138,34 @@ export const initialBoards = [
         ),
       },
     ],
+    tracks: [
+      {
+        name: "Track 1",
+        isActive: false,
+        audio: new Audio(require("@/assets/audio/Chad Crouch - Lilac.mp3")),
+      },
+      {
+        name: "Track 2",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - auspicious-flutes-master.mp3")
+        ),
+      },
+      {
+        name: "Track 3",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - invocation-master.mp3")
+        ),
+      },
+      {
+        name: "Track 4",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - nostalgia-master.mp3")
+        ),
+      },
+    ],
   },
   {
     name: "The Desert",
@@ -165,6 +193,34 @@ export const initialBoards = [
         icon: "♨",
         name: "Bonfire",
         isActive: false,
+      },
+    ],
+    tracks: [
+      {
+        name: "Track 1",
+        isActive: false,
+        audio: new Audio(require("@/assets/audio/Chad Crouch - Lilac.mp3")),
+      },
+      {
+        name: "Track 2",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - auspicious-flutes-master.mp3")
+        ),
+      },
+      {
+        name: "Track 3",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - invocation-master.mp3")
+        ),
+      },
+      {
+        name: "Track 4",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - nostalgia-master.mp3")
+        ),
       },
     ],
   },
@@ -262,6 +318,34 @@ export const initialBoards = [
         icon: "♨",
         name: "Bonfire",
         isActive: false,
+      },
+    ],
+    tracks: [
+      {
+        name: "Track 1",
+        isActive: false,
+        audio: new Audio(require("@/assets/audio/Chad Crouch - Lilac.mp3")),
+      },
+      {
+        name: "Track 2",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - auspicious-flutes-master.mp3")
+        ),
+      },
+      {
+        name: "Track 3",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - invocation-master.mp3")
+        ),
+      },
+      {
+        name: "Track 4",
+        isActive: false,
+        audio: new Audio(
+          require("@/assets/audio/John Bartmann - nostalgia-master.mp3")
+        ),
       },
     ],
   },
