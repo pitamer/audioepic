@@ -5,10 +5,25 @@ export default createStore({
   state: {
     boards: initialBoards,
     currentBoardIndex: 0,
+    loadedAudios: [],
     editMode: false,
   },
 
   mutations: {
+    loadAudioIfNeeded(state, payload) {
+      const { audioFile } = payload;
+      const loadedAudioFiles = state.loadedAudios.map((audio) => audio.file);
+
+      if (loadedAudioFiles.includes(audioFile)) {
+        return;
+      }
+
+      state.loadedAudios.push({
+        file: audioFile,
+        audio: new Audio(require(`@/assets/audio/${audioFile}`)),
+      });
+    },
+
     setCurrentBoardIndex(state, payload) {
       state.currentBoardIndex = payload.newcurrentBoardIndex;
     },
@@ -44,43 +59,11 @@ export default createStore({
       state, payload;
     },
 
-    playSound(state, payload) {
-      const { boardIndex, soundIndex } = payload;
-
-      const board = state.boards[boardIndex];
-      const sound = board.sounds[soundIndex];
-
-      sound.audio.play();
-    },
-
-    toggleLoop(state, payload) {
-      const { boardIndex, loopIndex } = payload;
-
-      const board = state.boards[boardIndex];
-      const loop = board.loops[loopIndex];
-
-      loop.isActive = !loop.isActive;
-      loop.audio.loop = true;
-
-      loop.isActive ? loop.audio.play() : loop.audio.pause();
-    },
-
-    toggleTrack(state, payload) {
-      const { boardIndex, trackIndex } = payload;
-
-      const board = state.boards[boardIndex];
-      const track = board.tracks[trackIndex];
-
-      track.isActive = !track.isActive;
-
-      track.isActive ? track.audio.play() : track.audio.pause();
-    },
-
     deactivateBoards(state) {
       state.boards.forEach((board) => {
         board.sounds.forEach((sound) => (sound.isActive = false));
         board.loops.forEach((loop) => (loop.isActive = false));
-        // board.tracks.forEach((track) => (track.isActive = false)); // #
+        board.tracks.forEach((track) => (track.isActive = false));
       });
     },
   },
@@ -92,6 +75,65 @@ export default createStore({
         newcurrentBoardIndex: payload.newcurrentBoardIndex,
       });
       commit("deactivateBoards");
+    },
+
+    playSound: ({ commit, state }, payload) => {
+      const { boardIndex, soundIndex } = payload;
+      const { loadedAudios } = state;
+
+      const board = state.boards[boardIndex];
+      const sound = board.sounds[soundIndex];
+
+      const { audioFile } = sound;
+
+      commit("loadAudioIfNeeded", { audioFile });
+
+      const soundAudio = loadedAudios.find(
+        (loadedAudio) => loadedAudio.file === audioFile
+      ).audio;
+
+      soundAudio.play();
+    },
+
+    toggleLoop: ({ commit, state }, payload) => {
+      const { boardIndex, loopIndex } = payload;
+      const { loadedAudios } = state;
+
+      const board = state.boards[boardIndex];
+      const loop = board.loops[loopIndex];
+
+      const { audioFile } = loop;
+
+      commit("loadAudioIfNeeded", { audioFile });
+
+      const loopAudio = loadedAudios.find(
+        (loadedAudio) => loadedAudio.file === audioFile
+      ).audio;
+
+      loop.isActive = !loop.isActive;
+      loopAudio.loop = true;
+
+      loop.isActive ? loopAudio.play() : loopAudio.pause();
+    },
+
+    toggleTrack: ({ commit, state }, payload) => {
+      const { boardIndex, trackIndex } = payload;
+      const { loadedAudios } = state;
+
+      const board = state.boards[boardIndex];
+      const track = board.tracks[trackIndex];
+
+      const { audioFile } = track;
+
+      commit("loadAudioIfNeeded", { audioFile });
+
+      const trackAudio = loadedAudios.find(
+        (loadedAudio) => loadedAudio.file === audioFile
+      ).audio;
+
+      track.isActive = !track.isActive;
+
+      track.isActive ? trackAudio.play() : trackAudio.pause();
     },
   },
 

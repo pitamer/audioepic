@@ -30,7 +30,7 @@ export default {
 
   methods: {
     playSound() {
-      this.$store.commit({
+      this.$store.dispatch({
         type: "playSound",
         boardIndex: this.$store.state.currentBoardIndex,
         soundIndex: this.index,

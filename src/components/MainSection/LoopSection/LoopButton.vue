@@ -29,7 +29,7 @@ export default {
 
   methods: {
     toggleLoop() {
-      this.$store.commit({
+      this.$store.dispatch({
         type: "toggleLoop",
         boardIndex: this.$store.state.currentBoardIndex,
         loopIndex: this.index,

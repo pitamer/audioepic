@@ -24,7 +24,7 @@ export default {
 
   methods: {
     toggleTrack() {
-      this.$store.commit({
+      this.$store.dispatch({
         type: "toggleTrack",
         boardIndex: this.$store.state.currentBoardIndex,
         trackIndex: this.index,
