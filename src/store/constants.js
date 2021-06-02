@@ -2,13 +2,13 @@ export const initialBoards = [
   {
     name: "The Forest",
     sounds: [
-      {
-        number: 1,
-        icon: "☠",
-        name: "Screech",
-        isActive: false,
-        audioFile: "mixkit-nasty-criature-roar-2781.wav",
-      },
+      // {
+      //   number: 1,
+      //   icon: "☠",
+      //   name: "Screech",
+      //   isActive: false,
+      //   audioFile: "mixkit-nasty-criature-roar-2781.wav",
+      // },
       {
         number: 2,
         icon: "❦",
@@ -36,12 +36,12 @@ export const initialBoards = [
         name: "Clank",
         isActive: false,
       },
-      {
-        number: 6,
-        icon: "۩",
-        name: "Bash",
-        isActive: false,
-      },
+      // {
+      //   number: 6,
+      //   icon: "۩",
+      //   name: "Bash",
+      //   isActive: false,
+      // },
       {
         number: 7,
         icon: "๑",
@@ -54,12 +54,12 @@ export const initialBoards = [
         name: "Arrow",
         isActive: false,
       },
-      {
-        number: 9,
-        icon: "☾",
-        name: "Howl",
-        isActive: false,
-      },
+      // {
+      //   number: 9,
+      //   icon: "☾",
+      //   name: "Howl",
+      //   isActive: false,
+      // },
       {
         number: 0,
         icon: "♕",
@@ -317,3 +317,5 @@ export const emptyBoard = {
   loops: [],
   tracks: [],
 };
+
+export const defaultNoSound = "mixkit-short-impact-static-3131.wav"; // #

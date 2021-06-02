@@ -1,25 +1,27 @@
 <template>
   <div id="sound-section" class="section">
     <SoundButton
-      v-for="(sound, soundIndex) in $store.state.boards[
-        $store.state.currentBoardIndex
-      ].sounds"
-      :key="soundIndex"
-      :index="soundIndex"
-      :number="sound.number"
-      :icon="sound.icon"
-      :name="sound.name"
+      v-for="buttonNumber in numberButtons"
+      :key="buttonNumber"
+      :buttonNumber="buttonNumber"
     />
   </div>
 </template>
 
 <script>
 import SoundButton from "./soundButton";
+import { numberButtons } from "./constants.js";
 
 export default {
   name: "SoundSection",
   components: {
     SoundButton,
+  },
+
+  data() {
+    return {
+      numberButtons: numberButtons,
+    };
   },
 };
 </script>
