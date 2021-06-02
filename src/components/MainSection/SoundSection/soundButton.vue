@@ -1,28 +1,18 @@
 <template>
   <div class="sound button" @click="playSound">
-    <div class="sound-number">{{ number }}</div>
+    <div class="sound-number">{{ buttonNumber }}</div>
     <div class="sound-icon">{{ icon }}</div>
     <div class="sound-name">{{ name }}</div>
   </div>
 </template>
 
 <script>
+import { defaultNoSound } from './constants.js'
+
 export default {
   name: "SoundButton",
   props: {
-    number: {
-      type: Number,
-      required: true,
-    },
-    icon: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    index: {
+    buttonNumber: {
       type: Number,
       required: true,
     },
@@ -32,9 +22,26 @@ export default {
     playSound() {
       this.$store.dispatch({
         type: "playSound",
-        boardIndex: this.$store.state.currentBoardIndex,
-        soundIndex: this.index,
+        audioFile: this.sound.audioFile || defaultNoSound,
       });
+    },
+  },
+
+  computed: {
+    boardSounds() {
+      return this.$store.state.boards[this.$store.state.currentBoardIndex]
+        .sounds;
+    },
+    sound() {
+      return this.boardSounds.find(
+        (sound) => sound.number === this.buttonNumber
+      );
+    },
+    icon() {
+      return this.sound?.icon || "";
+    },
+    name() {
+      return this.sound?.name || "";
     },
   },
 };

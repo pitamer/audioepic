@@ -1,12 +1,12 @@
 <template>
   <div id="main-section">
-    <h3>Sounds</h3>
+    <h3>⌾ Sounds</h3>
     <hr />
     <SoundSection />
-    <h3>Loops</h3>
+    <h3>↻ Loops</h3>
     <hr />
     <LoopSection />
-    <h3>Tracks</h3>
+    <h3>🎵 Tracks</h3>
     <hr />
     <TrackSection />
   </div>

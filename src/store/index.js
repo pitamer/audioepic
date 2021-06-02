@@ -78,13 +78,8 @@ export default createStore({
     },
 
     playSound: ({ commit, state }, payload) => {
-      const { boardIndex, soundIndex } = payload;
+      const { audioFile } = payload;
       const { loadedAudios } = state;
-
-      const board = state.boards[boardIndex];
-      const sound = board.sounds[soundIndex];
-
-      const { audioFile } = sound;
 
       commit("loadAudioIfNeeded", { audioFile });
 
