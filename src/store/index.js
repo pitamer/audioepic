@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import { initialBoards, emptyBoard } from "./constants";
+import { initialBoards, emptyBoard, defaultNoSound } from "./constants";
 
 export default createStore({
   state: {
@@ -78,7 +78,7 @@ export default createStore({
     },
 
     playSound: ({ commit, state }, payload) => {
-      const { audioFile } = payload;
+      const { audioFile = defaultNoSound } = payload;
       const { loadedAudios } = state;
 
       commit("loadAudioIfNeeded", { audioFile });

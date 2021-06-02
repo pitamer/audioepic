@@ -318,4 +318,4 @@ export const emptyBoard = {
   tracks: [],
 };
 
-export const defaultNoSound = "mixkit-short-impact-static-3131.wav"; // #
+export const defaultNoSound = "mixkit-metal-tank-gear-shift-2757.wav";
