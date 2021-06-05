@@ -1,13 +1,10 @@
 <template>
   <div id="main-section">
     <h3>⌾ Sounds</h3>
-    <hr />
     <SoundSection />
     <h3>↻ Loops</h3>
-    <hr />
     <LoopSection />
     <h3>🎵 Tracks</h3>
-    <hr />
     <TrackSection />
   </div>
 </template>
@@ -29,7 +26,13 @@ export default {
 
 <style lang="scss">
 h3 {
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 0 0;
   padding: 0;
+  width: 100%;
+  background-color: skyblue;
+  border-radius: 5px;
+  user-select: none;
 }
 </style>

@@ -16,6 +16,14 @@ export default {
     },
   },
 
+  mounted() {
+    window.addEventListener("keydown", (event) => {
+      if (event.key == this.buttonNumber) {
+        this.playSound()
+      }
+    });
+  },
+
   methods: {
     playSound() {
       this.$store.dispatch({
@@ -42,7 +50,8 @@ export default {
   flex-flow: column;
   margin: 0 5px;
   width: 100%;
-  min-height: 50px;
+  // min-height: 50px;
+  min-height: 62px !important; // #
 
   .sound-number,
   .sound-name {

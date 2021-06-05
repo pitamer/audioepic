@@ -1,10 +1,5 @@
 <template>
   <div id="audioepic">
-    <!-- // # -->
-    <!-- <h1>This is Audioepic</h1> -->
-    <h6>
-      Sure, it's not very impressive <strong>yet</strong>. But wait and see!
-    </h6>
     <div id="main-screen">
       <TabSection />
       <MainSection />
@@ -28,11 +23,6 @@ export default {
 <style lang="scss">
 #audioepic {
   height: 100%;
-
-  h1, h6 { // #
-    margin: 10px;
-    padding: 0;
-  }
 
   #main-screen {
     padding: 10px;
