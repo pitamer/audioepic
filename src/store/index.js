@@ -25,7 +25,7 @@ export default createStore({
     },
 
     setCurrentBoardIndex(state, payload) {
-      state.currentBoardIndex = payload.newcurrentBoardIndex;
+      state.currentBoardIndex = payload.newCurrentBoardIndex;
     },
 
     addBoard(state, payload) {
@@ -72,7 +72,7 @@ export default createStore({
     switchBoard: ({ commit }, payload) => {
       commit({
         type: "setCurrentBoardIndex",
-        newcurrentBoardIndex: payload.newcurrentBoardIndex,
+        newCurrentBoardIndex: payload.newCurrentBoardIndex,
       });
       commit("deactivateBoards");
     },
