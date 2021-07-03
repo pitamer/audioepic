@@ -1,6 +1,8 @@
 import { createStore } from "vuex";
 import { initialBoards, emptyBoard, defaultNoSound } from "./constants";
 
+const audioContext = new AudioContext();
+
 export default createStore({
   state: {
     boards: initialBoards,
@@ -10,18 +12,46 @@ export default createStore({
   },
 
   mutations: {
+    // # Probably Should not be a mutation
+    resumeAudioContextIfInSuspendedState() {
+      // check if context is in suspended state (autoplay policy)
+      // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+    },
+
     loadAudioIfNeeded(state, payload) {
       const { audioFile } = payload;
-      const loadedAudioFiles = state.loadedAudios.map((audio) => audio.file);
+      const loadedAudioFiles = state.loadedAudios.map((audio) => audio.audioFile); // # Improve efficiency
 
-      if (loadedAudioFiles.includes(audioFile)) {
+      if (loadedAudioFiles.includes(audioFile)) { // # Improve efficiency, just use find() once
         return;
       }
 
+      const audioElement = new Audio(require(`@/assets/audio/${audioFile}`));
+
+      const controlledAudio = audioContext.createMediaElementSource(audioElement);
+      const gainNode = audioContext.createGain();
+
+      controlledAudio.connect(gainNode).connect(audioContext.destination);
+
       state.loadedAudios.push({
-        file: audioFile,
-        audio: new Audio(require(`@/assets/audio/${audioFile}`)),
+        audioFile: audioFile,
+        audioElement: audioElement,
+        gainNode: gainNode,
       });
+    },
+
+    setAudioVolume(state, payload) {
+      const { loadedAudios } = state;
+      const { audioFile, updatedVolume } = payload;
+
+      const audioGainNode = loadedAudios.find(
+        (loadedAudio) => loadedAudio.audioFile === audioFile
+      ).gainNode;
+
+      audioGainNode.gain.value = updatedVolume;
     },
 
     setCurrentBoardIndex(state, payload) {
@@ -84,8 +114,8 @@ export default createStore({
       commit("loadAudioIfNeeded", { audioFile });
 
       const soundAudio = loadedAudios.find(
-        (loadedAudio) => loadedAudio.file === audioFile
-      ).audio;
+        (loadedAudio) => loadedAudio.audioFile === audioFile
+      ).audioElement;
 
       soundAudio.play();
     },
@@ -102,8 +132,8 @@ export default createStore({
       commit("loadAudioIfNeeded", { audioFile });
 
       const loopAudio = loadedAudios.find(
-        (loadedAudio) => loadedAudio.file === audioFile
-      ).audio;
+        (loadedAudio) => loadedAudio.audioFile === audioFile
+      ).audioElement;
 
       loop.isActive = !loop.isActive;
       loopAudio.loop = true;
@@ -123,8 +153,8 @@ export default createStore({
       commit("loadAudioIfNeeded", { audioFile });
 
       const trackAudio = loadedAudios.find(
-        (loadedAudio) => loadedAudio.file === audioFile
-      ).audio;
+        (loadedAudio) => loadedAudio.audioFile === audioFile
+      ).audioElement;
 
       track.isActive = !track.isActive;
 

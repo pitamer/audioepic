@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import TabSection from '@/components/TabSection';
-import MainSection from '@/components/MainSection';
+import TabSection from "@/components/TabSection";
+import MainSection from "@/components/MainSection";
 
 export default {
   name: "Audioepic",
   components: {
     TabSection,
-    MainSection
+    MainSection,
   },
 };
 </script>
@@ -32,7 +32,7 @@ export default {
     min-height: 30px;
     min-width: 30px;
     border: 2px #c8c8c8 solid;
-    border-radius: 10px;
+    border-radius: 5px;
     user-select: none;
     cursor: pointer;
     overflow: hidden;

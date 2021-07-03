@@ -1,12 +1,19 @@
 <template>
   <div class="sound button" @click="playSound">
-    <div class="sound-number">{{ buttonNumber }}</div>
-    <div class="sound-icon">{{ sound?.icon }}</div>
-    <div class="sound-name">{{ sound?.name }}</div>
+    <div class="sound-button-info">
+      <div class="sound-number">{{ buttonNumber }}</div>
+      <div class="sound-icon">{{ sound?.icon }}</div>
+      <div class="sound-name">{{ sound?.name }}</div>
+    </div>
+    <div class="sound-button-volume">
+      <VolumeSlider :sound="this.sound" />
+    </div>
   </div>
 </template>
 
 <script>
+import VolumeSlider from "@/components/VolumeSlider";
+
 export default {
   name: "SoundButton",
   props: {
@@ -16,10 +23,14 @@ export default {
     },
   },
 
+  components: {
+    VolumeSlider,
+  },
+
   mounted() {
     window.addEventListener("keydown", (event) => {
-      if (event.key == this.buttonNumber) {
-        this.playSound()
+      if (event.key === String(this.buttonNumber)) {
+        this.playSound();
       }
     });
   },
@@ -46,27 +57,47 @@ export default {
 
 <style lang="scss">
 #sound-section .sound {
-  display: flex;
-  flex-flow: column;
-  margin: 0 5px;
   width: 100%;
-  // min-height: 50px;
-  min-height: 62px !important; // #
+  margin: 0 5px;
+  position: relative;
 
-  .sound-number,
-  .sound-name {
-    font-size: 0.7em;
+  .sound-button-info {
+    display: flex;
+    flex-flow: column;
+    min-height: 64px;
+
+    .sound-number,
+    .sound-name {
+      font-size: 0.7em;
+    }
+
+    .sound-number {
+      position: absolute;
+      text-align: left;
+      padding: 1px 0 0 4px;
+    }
+
+    .sound-icon {
+      font-size: 1.5em;
+      margin-top: 10px;
+    }
   }
 
-  .sound-number {
+  &:hover {
+    .sound-button-volume {
+      opacity: 1;
+    }
+  }
+
+  .sound-button-volume {
+    //outline: 1px red solid;
+    height: 100%;
     position: absolute;
-    text-align: left;
-    padding: 1px 0 0 4px;
-  }
-
-  .sound-icon {
-    font-size: 1.5em;
-    margin-top: 10px;
+    display: grid;
+    place-items: center;
+    top: 3px;
+    right: 5px;
+    opacity: 0;
   }
 }
 </style>

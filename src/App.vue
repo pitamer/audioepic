@@ -24,8 +24,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding: none;
-  margin: none;
+  padding: 0;
+  margin: 0;
   min-height: 100vh;
   box-shadow: inset 0 0 0 5px skyblue;
 }
