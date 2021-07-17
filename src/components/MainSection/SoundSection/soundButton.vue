@@ -6,7 +6,7 @@
       <div class="sound-name">{{ sound?.name }}</div>
     </div>
     <div class="sound-button-volume">
-      <VolumeSlider v-if="this.sound" :sound="this.sound" />
+      <VolumeSlider v-if="this.sound" :audio="this.sound" />
     </div>
   </div>
 </template>
@@ -83,14 +83,7 @@ export default {
     }
   }
 
-  &:hover {
-    .sound-button-volume {
-      opacity: 1;
-    }
-  }
-
   .sound-button-volume {
-    //outline: 1px red solid;
     height: 100%;
     position: absolute;
     display: grid;
@@ -98,6 +91,12 @@ export default {
     top: 0;
     right: 4px;
     opacity: 0;
+  }
+
+  &:hover {
+    .sound-button-volume {
+      opacity: 1;
+    }
   }
 }
 </style>

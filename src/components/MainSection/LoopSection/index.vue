@@ -1,14 +1,10 @@
 <template>
   <div id="loop-section" class="section">
     <LoopButton
-      v-for="(loop, loopIndex) in $store.state.boards[
-        $store.state.currentBoardIndex
-      ].loops"
+      v-for="(loop, loopIndex) in this.loops"
       :key="loopIndex"
       :index="loopIndex"
-      :icon="loop.icon"
-      :name="loop.name"
-      :isActive="loop.isActive"
+      :loop="loop"
     />
   </div>
 </template>
@@ -18,8 +14,16 @@ import LoopButton from "./LoopButton";
 
 export default {
   name: "LoopSection",
+
   components: {
     LoopButton,
+  },
+
+  computed: {
+    loops() {
+      const { boards, currentBoardIndex } = this.$store.state;
+      return boards[currentBoardIndex].loops;
+    },
   },
 };
 </script>

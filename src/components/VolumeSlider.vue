@@ -20,17 +20,17 @@ export default {
   name: "VolumeSlider",
 
   props: {
-    sound: Object,
+    audio: Object,
   },
 
   computed: {
     volume() {
-      if (!this.sound) {
+      if (!this.audio) {
         return defaultAudioVolume;
       }
 
       const { loadedAudios } = this.$store.state;
-      const { audioFile } = this.sound;
+      const { audioFile } = this.audio;
       const loadedAudio = loadedAudios.find(
         (loadedAudio) => loadedAudio.audioFile === audioFile
       );
@@ -39,7 +39,7 @@ export default {
         return loadedAudio.gainNode.gain.value;
       }
 
-      return this.sound.volume || defaultAudioVolume;
+      return this.audio.volume || defaultAudioVolume;
     },
   },
 
@@ -47,7 +47,7 @@ export default {
     setAudioVolume(e) {
       this.$store.commit({
         type: "setAudioVolume",
-        audioFile: this.sound?.audioFile,
+        audioFile: this.audio?.audioFile,
         updatedVolume: e.target.value,
       });
     },
