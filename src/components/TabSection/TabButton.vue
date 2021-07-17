@@ -39,13 +39,13 @@ export default {
         deletedBoardIndex: deletedBoardIndex,
       });
     },
-    switchBoard(newcurrentBoardIndex) {
+    switchBoard(newCurrentBoardIndex) {
       if (this.index === this.$store.state.currentBoardIndex) {
         return;
       }
       this.$store.dispatch({
         type: "switchBoard",
-        newcurrentBoardIndex: newcurrentBoardIndex,
+        newCurrentBoardIndex: newCurrentBoardIndex,
       });
     },
   },
