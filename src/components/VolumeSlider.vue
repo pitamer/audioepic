@@ -1,19 +1,21 @@
 <template>
-  <div class="range-slider">
+  <div class="range-slider" @click.stop="">
     <input
       class="range-slider__range"
       type="range"
       orient="vertical"
       :value="volume"
-      @input="setAudioVolume"
+      @input.stop="setAudioVolume"
       min="0"
       max="2"
       step="0.1"
-    >
+    />
   </div>
 </template>
 
 <script>
+import { defaultAudioVolume } from "@/store/constants";
+
 export default {
   name: "VolumeSlider",
 
@@ -21,19 +23,32 @@ export default {
     sound: Object,
   },
 
-  data() {
-    return {
-      // volume: this.sound?.gainNode.gain.value, // #
-      volume: 1,
-    };
+  computed: {
+    volume() {
+      if (!this.sound) {
+        return defaultAudioVolume;
+      }
+
+      const { loadedAudios } = this.$store.state;
+      const { audioFile } = this.sound;
+      const loadedAudio = loadedAudios.find(
+        (loadedAudio) => loadedAudio.audioFile === audioFile
+      );
+
+      if (loadedAudio) {
+        return loadedAudio.gainNode.gain.value;
+      }
+
+      return this.sound.volume || defaultAudioVolume;
+    },
   },
 
   methods: {
-    setAudioVolume() {
-      this.$store.dispatch({
+    setAudioVolume(e) {
+      this.$store.commit({
         type: "setAudioVolume",
         audioFile: this.sound?.audioFile,
-        updatedVolume: this.volume,
+        updatedVolume: e.target.value,
       });
     },
   },
@@ -67,11 +82,8 @@ export default {
   $range-track-color: $shade-1 !default;
   $range-track-height: 50px !default;
 
-  .range-slider {
-    // # This is the container, maybe it
-    // should be wider than the content?
-    width: $range-width;
-  }
+  width: $range-handle-size;
+  height: $range-track-height;
 
   .range-slider__range {
     -webkit-appearance: slider-vertical;
@@ -91,7 +103,7 @@ export default {
       border-radius: 50%;
       background: $range-handle-color;
       cursor: pointer;
-      transition: background .15s ease-in-out;
+      transition: background 0.15s ease-in-out;
 
       &:hover {
         background: $range-handle-color-hover;
@@ -109,7 +121,7 @@ export default {
       border-radius: 50%;
       background: $range-handle-color;
       cursor: pointer;
-      transition: background .15s ease-in-out;
+      transition: background 0.15s ease-in-out;
 
       &:hover {
         background: $range-handle-color-hover;

@@ -6,7 +6,7 @@
       <div class="sound-name">{{ sound?.name }}</div>
     </div>
     <div class="sound-button-volume">
-      <VolumeSlider :sound="this.sound" />
+      <VolumeSlider v-if="this.sound" :sound="this.sound" />
     </div>
   </div>
 </template>
@@ -95,8 +95,8 @@ export default {
     position: absolute;
     display: grid;
     place-items: center;
-    top: 3px;
-    right: 5px;
+    top: 0;
+    right: 4px;
     opacity: 0;
   }
 }

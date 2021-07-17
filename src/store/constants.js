@@ -35,6 +35,7 @@ export const initialBoards = [
         icon: "☢",
         name: "Clank",
         isActive: false,
+        audioFile: "mixkit-metal-tank-gear-shift-2757.wav",
       },
       // {
       //   number: 6,
@@ -76,7 +77,7 @@ export const initialBoards = [
       },
       {
         icon: "☼",
-        name: "Daylight",
+        name: "Insects",
         isActive: false,
         audioFile: "mixkit-night-forest-with-insects-2414.wav",
       },
@@ -104,14 +105,14 @@ export const initialBoards = [
         isActive: false,
         audioFile: "mixkit-campfire-crackles-1330.wav",
       },
+      // {
+      //   icon: "♨",
+      //   name: "Bonfire",
+      //   isActive: false,
+      // },
       {
-        icon: "♨",
-        name: "Bonfire",
-        isActive: false,
-      },
-      {
-        icon: "♨",
-        name: "Bonfire",
+        icon: "V",
+        name: "Victory",
         isActive: false,
         audioFile: "mixkit-game-level-completed-2059.wav",
       },
@@ -311,7 +312,7 @@ export const initialBoards = [
   },
 ];
 
-export const emptyBoard = {
+export const newBoardSchema = {
   name: "New Board",
   sounds: [],
   loops: [],
@@ -319,3 +320,5 @@ export const emptyBoard = {
 };
 
 export const defaultNoSound = "mixkit-metal-tank-gear-shift-2757.wav";
+
+export const defaultAudioVolume = 1;

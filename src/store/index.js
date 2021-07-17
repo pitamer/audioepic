@@ -1,7 +1,16 @@
 import { createStore } from "vuex";
-import { initialBoards, emptyBoard, defaultNoSound } from "./constants";
+import { resumeAudioContextIfInSuspendedState } from "@/store/utils";
+import {
+  initialBoards,
+  newBoardSchema,
+  defaultNoSound,
+  defaultAudioVolume,
+} from "./constants";
 
 const audioContext = new AudioContext();
+if (audioContext) {
+  resumeAudioContextIfInSuspendedState(audioContext);
+}
 
 export default createStore({
   state: {
@@ -12,20 +21,13 @@ export default createStore({
   },
 
   mutations: {
-    // # Probably Should not be a mutation
-    resumeAudioContextIfInSuspendedState() {
-      // check if context is in suspended state (autoplay policy)
-      // https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API
-      if (audioContext.state === "suspended") {
-        audioContext.resume();
-      }
-    },
-
     loadAudioIfNeeded(state, payload) {
       const { audioFile } = payload;
-      const loadedAudioFiles = state.loadedAudios.map((audio) => audio.audioFile); // # Improve efficiency
+      const audioFileAlreadyLoaded = state.loadedAudios.find(
+        (audio) => audio.audioFile === audioFile
+      );
 
-      if (loadedAudioFiles.includes(audioFile)) { // # Improve efficiency, just use find() once
+      if (audioFileAlreadyLoaded) {
         return;
       }
 
@@ -33,6 +35,8 @@ export default createStore({
 
       const controlledAudio = audioContext.createMediaElementSource(audioElement);
       const gainNode = audioContext.createGain();
+
+      gainNode.gain.value = defaultAudioVolume;
 
       controlledAudio.connect(gainNode).connect(audioContext.destination);
 
@@ -49,9 +53,14 @@ export default createStore({
 
       const audioGainNode = loadedAudios.find(
         (loadedAudio) => loadedAudio.audioFile === audioFile
-      ).gainNode;
+      )?.gainNode;
 
-      audioGainNode.gain.value = updatedVolume;
+      if (audioGainNode) {
+        audioGainNode.gain.value = updatedVolume;
+      }
+
+      // # Server data should also be updated
+      // Don't forget to debounce or throttle
     },
 
     setCurrentBoardIndex(state, payload) {
@@ -61,7 +70,7 @@ export default createStore({
     addBoard(state, payload) {
       const { newBoardName } = payload;
       state.boards.push({
-        ...emptyBoard,
+        ...newBoardSchema,
         name: newBoardName,
       });
     },
@@ -82,11 +91,13 @@ export default createStore({
     },
 
     renameBoard(state, payload) {
-      state, payload;
+      console.log(state, payload);
+      // # Server data should also be updated
     },
 
     reorderBoard(state, payload) {
-      state, payload;
+      console.log(state, payload);
+      // # Server data should also be updated
     },
 
     deactivateBoards(state) {
@@ -124,9 +135,7 @@ export default createStore({
       const { boardIndex, loopIndex } = payload;
       const { loadedAudios } = state;
 
-      const board = state.boards[boardIndex];
-      const loop = board.loops[loopIndex];
-
+      const loop = state.boards[boardIndex].loops[loopIndex];
       const { audioFile } = loop;
 
       commit("loadAudioIfNeeded", { audioFile });
@@ -145,9 +154,7 @@ export default createStore({
       const { boardIndex, trackIndex } = payload;
       const { loadedAudios } = state;
 
-      const board = state.boards[boardIndex];
-      const track = board.tracks[trackIndex];
-
+      const track = state.boards[boardIndex].tracks[trackIndex];
       const { audioFile } = track;
 
       commit("loadAudioIfNeeded", { audioFile });
